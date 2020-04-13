@@ -78,7 +78,7 @@ open class LiquidSwipeContainerController: UIViewController {
     
     private func configureBtnNext() {
         view.addSubview(btnNext)
-        csBtnNextLeading = btnNext.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(initialHorRadius + initialSideWidth) + 3.0)
+        csBtnNextLeading = btnNext.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(initialHorRadius + initialSideWidth) + 1.0)
         csBtnNextLeading?.isActive = true
         csBtnNextCenterY = btnNext.centerYAnchor.constraint(equalTo: view.topAnchor, constant: initialWaveCenter)
         csBtnNextCenterY?.isActive = true
