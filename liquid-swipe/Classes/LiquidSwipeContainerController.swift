@@ -51,12 +51,7 @@ open class LiquidSwipeContainerController: UIViewController {
     private var maxVertRadius: CGFloat {
         return view.bounds.height * 0.9
     }
-    private var initialSideWidth: CGFloat {
-        if #available(iOS 11.0, *) {
-            return 15.0 + view.safeAreaInsets.right
-        }
-        return 15.0
-    }
+    public var initialSideWidth: CGFloat = 0
     private var initialWaveCenter: CGFloat  {
         return view.bounds.height * 0.7167487685
     }
@@ -83,7 +78,7 @@ open class LiquidSwipeContainerController: UIViewController {
     
     private func configureBtnNext() {
         view.addSubview(btnNext)
-        csBtnNextLeading = btnNext.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(initialHorRadius + initialSideWidth) + 8.0)
+        csBtnNextLeading = btnNext.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(initialHorRadius + initialSideWidth) + 3.0)
         csBtnNextLeading?.isActive = true
         csBtnNextCenterY = btnNext.centerYAnchor.constraint(equalTo: view.topAnchor, constant: initialWaveCenter)
         csBtnNextCenterY?.isActive = true
