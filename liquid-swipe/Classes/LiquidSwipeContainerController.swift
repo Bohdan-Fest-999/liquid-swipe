@@ -108,7 +108,7 @@ open class LiquidSwipeContainerController: UIViewController {
         mask.sideWidth = sideWidth(forProgress: progress)
         mask.waveHorRadius = waveHorRadius(forProgress: progress)
         mask.waveVertRadius = waveVertRadius(forProgress: progress)
-        csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 8.0)
+        csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 1.0)
         mask.updatePath()
         
         self.btnNext.layoutIfNeeded()
