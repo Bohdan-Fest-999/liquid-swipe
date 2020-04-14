@@ -312,7 +312,7 @@ open class LiquidSwipeContainerController: UIViewController {
                     let progress: CGFloat = 1.0 - min(1.0, max(0, CGFloat(time - startTime) / duration))
                     mask.sideWidth = self.initialSideWidth * progress
                     mask.waveHorRadius = self.initialHorRadius * progress
-                    self.csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 8.0)
+                    self.csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 1.0)
                     self.btnNext.transform = CGAffineTransform(scaleX: progress, y: progress)
                     mask.updatePath()
                     switch gesture.state {
@@ -331,7 +331,7 @@ open class LiquidSwipeContainerController: UIViewController {
                     let progress = min(1.0, max(0, CGFloat(time - (cancelTime ?? CACurrentMediaTime())) / duration))
                     mask.sideWidth = self.initialSideWidth * progress
                     mask.waveHorRadius = self.initialHorRadius * progress
-                    self.csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 8.0)
+                    self.csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 1.0)
                     self.btnNext.transform = CGAffineTransform(scaleX: progress, y: progress)
                     self.btnNext.layoutIfNeeded()
                     mask.updatePath()
@@ -433,7 +433,7 @@ open class LiquidSwipeContainerController: UIViewController {
             mask.sideWidth = self.initialSideWidth * progress
             mask.updatePath()
             self.btnNext.alpha = progress
-            self.csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 8.0)
+            self.csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 1.0)
             self.btnNext.transform = CGAffineTransform(scaleX: progress, y: progress)
             self.btnNext.layoutIfNeeded()
             return progress <= 1.0
@@ -477,7 +477,7 @@ open class LiquidSwipeContainerController: UIViewController {
             let cTime = time - startTime
             let progress = CGFloat(cTime/duration)
             self.btnNext.alpha = progress
-            self.csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 8.0)
+            self.csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 1.0)
             self.btnNext.transform = CGAffineTransform(scaleX: progress, y: progress)
             self.btnNext.layoutIfNeeded()
             return progress <= 1.0
@@ -583,7 +583,7 @@ open class LiquidSwipeContainerController: UIViewController {
             if mask.sideWidth > 0 {
                 mask.sideWidth = initialSideWidth
                 mask.updatePath()
-                csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 8.0)
+                csBtnNextLeading?.constant = -(mask.waveHorRadius + mask.sideWidth - 1.0)
                 view.layoutIfNeeded()
             }
         }
@@ -615,7 +615,7 @@ open class LiquidSwipeContainerController: UIViewController {
                 self.apply(mask: maskLayer, on: prevPage)
             }
             self.csBtnNextCenterY?.constant = self.initialWaveCenter
-            self.csBtnNextLeading?.constant = -(self.initialHorRadius + self.initialSideWidth - 8.0)
+            self.csBtnNextLeading?.constant = -(self.initialHorRadius + self.initialSideWidth - 1.0)
             self.btnNext.isHidden = btnNextWasHidden
             self.btnNext.transform = CGAffineTransform.identity
             self.view.layoutIfNeeded()
