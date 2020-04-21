@@ -551,32 +551,13 @@ open class LiquidSwipeContainerController: UIViewController {
         view.layer.mask = mask
     }
     
+    
+    
     @objc private func btnTapped(_ sender: AnyObject) {
-        animationStartTime = CACurrentMediaTime()
-        guard !animating else {
-            return
-        }
-        animating = true
-        if let viewController = nextViewController {
-            delegate?.liquidSwipeContainer(self, willTransitionTo: viewController)
-        }
-        let animation = POPCustomAnimation {(target, animation) -> Bool in
-            guard let view = target as? UIView,
-                let time = animation?.currentTime else {
-                    return false
-            }
-            let cTime = time - (self.animationStartTime ?? CACurrentMediaTime())
-            let progress = CGFloat(cTime/self.duration)
-            self.animate(view: view, forProgress: progress)
-            self.animating = progress <= 1.0
-            return progress <= 1.0
-        }
-        animation?.completionBlock = { (animation, isFinished) in
-            self.animating = false
-            self.showNextPage()
-        }
-        currentPage?.pop_add(animation, forKey: "animation")
+        onButtonTapped(sender)
     }
+    
+    
     
     override open func viewSafeAreaInsetsDidChange() {
         if let mask = self.currentPage?.layer.mask as? WaveLayer {
@@ -706,5 +687,34 @@ private extension LiquidSwipeContainerController {
             return view.bounds.width
         }
         return initialSideWidth + (view.bounds.width - initialSideWidth) * (progress - p1)/(p2 - p1)
+    }
+    
+    
+    
+    private func onButtonTapped(_ sender: AnyObject? = nil) {
+        animationStartTime = CACurrentMediaTime()
+        guard !animating else {
+            return
+        }
+        animating = true
+        if let viewController = nextViewController {
+            delegate?.liquidSwipeContainer(self, willTransitionTo: viewController)
+        }
+        let animation = POPCustomAnimation {(target, animation) -> Bool in
+            guard let view = target as? UIView,
+                let time = animation?.currentTime else {
+                    return false
+            }
+            let cTime = time - (self.animationStartTime ?? CACurrentMediaTime())
+            let progress = CGFloat(cTime/self.duration)
+            self.animate(view: view, forProgress: progress)
+            self.animating = progress <= 1.0
+            return progress <= 1.0
+        }
+        animation?.completionBlock = { (animation, isFinished) in
+            self.animating = false
+            self.showNextPage()
+        }
+        currentPage?.pop_add(animation, forKey: "animation")
     }
 }
