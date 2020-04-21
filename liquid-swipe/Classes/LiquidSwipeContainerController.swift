@@ -691,7 +691,7 @@ private extension LiquidSwipeContainerController {
     
     
     
-    private func onButtonTapped(_ sender: AnyObject? = nil) {
+    func onButtonTapped(_ sender: AnyObject? = nil) {
         animationStartTime = CACurrentMediaTime()
         guard !animating else {
             return
